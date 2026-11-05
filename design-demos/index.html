@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Copilot access｜三個簡潔設計方向</title>
+  <style>
+    * { box-sizing: border-box; }
+    body { margin: 0; padding: 48px 32px; background: #f6f8fa; color: #1f2328; font: 15px/1.7 "Segoe UI", "Microsoft JhengHei", sans-serif; }
+    main { max-width: 1440px; margin: auto; }
+    h1 { font-size: 30px; letter-spacing: -.03em; margin: 0 0 12px; }
+    .intro { max-width: 900px; margin: 0 0 32px; color: #59636e; }
+    .grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; }
+    article { background: white; border: 1px solid #d7dce1; }
+    .image { display: block; overflow: hidden; border-bottom: 1px solid #d7dce1; }
+    img { display: block; width: 100%; aspect-ratio: 1440 / 1100; object-fit: cover; object-position: top; }
+    .copy { padding: 24px; }
+    .label { font-size: 12px; font-weight: 650; color: #59636e; }
+    h2 { font-size: 22px; margin: 6px 0 10px; }
+    p { margin: 0 0 18px; }
+    .description { min-height: 78px; color: #59636e; font-size: 14px; }
+    a { color: #0969da; text-underline-offset: 4px; }
+    a:focus-visible { outline: 3px solid #0969da; outline-offset: 4px; }
+    footer { margin-top: 30px; font-size: 13px; color: #59636e; }
+    @media (max-width: 900px) { .grid { grid-template-columns: 1fr; } body { padding: 28px 20px; } .description { min-height: 0; } }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>同一份試算，三種閱讀方式。</h1>
+    <p class="intro">三版皆可互動、可離線開啟，使用相同計價公式與文件說明。點圖片查看大圖，或開啟完整初稿調整數字；選定後再將該方向作為正式單頁。畫面均為 100 人、30 人 Standalone、平均 1,000 Credits 的假設情境。</p>
+    <div class="grid">
+      <article>
+        <a class="image" href="A-clear.png" aria-label="查看 A 左右對照版大圖"><img src="A-clear.png" alt="A 版：左側設定情境，右側同步對照兩制費用與平衡點。"></a>
+        <div class="copy">
+          <div class="label">A · 實用主版 · GitHub Primer 語彙</div>
+          <h2>左右對照</h2>
+          <p class="description">白底、細線、藍色重點。輸入固定在左，右側看差額、費用組成與曲線；適合反覆調整參數。</p>
+          <a href="A-clear.html">開啟互動初稿 ↗</a>
+        </div>
+      </article>
+      <article>
+        <a class="image" href="B-focus.png" aria-label="查看 B 橫向試算版大圖"><img src="B-focus.png" alt="B 版：上方橫列輸入，費用與結論並排，下方全寬曲線圖。"></a>
+        <div class="copy">
+          <div class="label">B · 寬版變體 · 工作表構圖</div>
+          <h2>橫向試算</h2>
+          <p class="description">深綠頁首與平面化工作表。先橫向設定三個變數，再比較費用與結論；適合寬螢幕或會議共看。</p>
+          <a href="B-focus.html">開啟互動初稿 ↗</a>
+        </div>
+      </article>
+      <article>
+        <a class="image" href="C-ledger.png" aria-label="查看 C 帳單閱讀版大圖"><img src="C-ledger.png" alt="C 版：暖白紙色與帳單式分隔線，以大字差額引導閱讀。"></a>
+        <div class="copy">
+          <div class="label">C · 閱讀變體 · 帳單與報告排印</div>
+          <h2>帳單閱讀</h2>
+          <p class="description">暖白紙色、墨色文字與克制的棕色重點。減少卡片邊框，像讀一份費用摘要；適合先理解、再試算。</p>
+          <a href="C-ledger.html">開啟互動初稿 ↗</a>
+        </div>
+      </article>
+    </div>
+    <footer>版型來自內容本身的「輸入 → 費用拆解 → 損益平衡」結構；三版不改公式、不改比較基準。非官方工具，價格與申請資格以官方最新公告及合約為準。</footer>
+  </main>
+</body>
+</html>
