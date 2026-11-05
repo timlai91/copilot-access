@@ -1,6 +1,6 @@
 # Copilot access 新舊制費用試算
 
-以繁體中文（zh-TW）呈現的互動式靜態頁面，協助企業比較 **Copilot Business** 與 **Copilot access** 的費用差異。調整使用人數、授權組合與 AI Credits 用量，即可查看月費、年度差額及損益平衡點。
+支援繁體中文（zh-TW）與 English 的互動式靜態頁面，協助企業比較 **Copilot Business** 與 **Copilot access** 的費用差異。調整使用人數、授權組合與 AI Credits 用量，即可查看月費、年度差額及損益平衡點。
 
 內容依據 [計價異動與主管決策摘要](copilot-access.md) 建立。這是**非官方試算工具**，不是帳單、個別合約報價或官方省費保證。
 
@@ -19,6 +19,8 @@ Start-Process .\copilot-access.html
 不需安裝套件、編譯或啟動伺服器。HTML 已內含樣式、互動邏輯與圖示，可離線試算；輸入數字不會由頁面上傳至伺服器。
 
 ## 使用方式
+
+預設顯示繁體中文，可使用畫面右上角的「中文／English」切換語系。切換會同步更新說明、圖表、錯誤提示及試算結果文字，不會重設輸入數字或切換用量模式。
 
 1. 輸入企業總使用人數，也就是目前 Business 席次數及切換後總人數。
 2. 輸入其中需要 Standalone 的人數；其餘人數視為已有 GitHub Enterprise Cloud 授權。

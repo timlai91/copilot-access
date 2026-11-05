@@ -12,7 +12,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="color-scheme" content="light">
-  <meta name="description" content="調整人數、授權組合與 AI Credits 用量，比較 Copilot Business 與 Copilot access 的月費及損益平衡點。">
+  <meta id="page-description" name="description" content="調整人數、授權組合與 AI Credits 用量，比較 Copilot Business 與 Copilot access 的月費及損益平衡點。">
   <title>Copilot access｜新舊制費用試算</title>
   <style>
     :root {
@@ -45,6 +45,10 @@
     .brand { display: flex; align-items: center; gap: 10px; font-weight: 650; font-size: 16px; }
     .brand svg { fill: currentColor; flex-shrink: 0; }
     .top-label { font-size: 12px; color: var(--muted); }
+    .header-actions { display: flex; align-items: center; gap: 18px; }
+    .language-switch { display: flex; gap: 2px; padding: 3px; border: 1px solid var(--line); border-radius: 6px; background: var(--canvas); flex-shrink: 0; }
+    .language-switch button { border: 0; border-radius: 4px; padding: 5px 8px; background: transparent; color: var(--muted); font-size: 12px; }
+    .language-switch button[aria-pressed="true"] { background: var(--paper); color: var(--accent); font-weight: 650; box-shadow: 0 1px 3px #1f232815; }
     .intro { padding: 40px 0 28px; }
     .eyebrow { font-size: 12px; font-weight: 650; color: var(--accent); letter-spacing: .1em; margin-bottom: 10px; }
     .intro p { color: var(--muted); margin-top: 12px; max-width: 780px; }
@@ -151,8 +155,8 @@
     }
     @media (max-width: 740px) {
       .shell { padding: 0 20px; }
-      .topbar .shell { min-height: 58px; }
-      .top-label { font-size: 12px; }
+      .topbar .shell { min-height: 58px; gap: 12px; }
+      .top-label { display: none; }
       .brand { font-size: 14px; }
       .intro { padding-top: 28px; }
       .intro p { font-size: 14px; }
@@ -178,7 +182,7 @@
   </style>
 </head>
 <body>
-  <a class="skip-link" href="#calculator">跳至費用試算</a>
+  <a class="skip-link" href="#calculator" data-en="Skip to calculator">跳至費用試算</a>
   <header class="topbar">
     <div class="shell">
       <div class="brand">
@@ -204,57 +208,63 @@
         <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 24 24" aria-hidden="true"><path d="M23.922 16.992c-.861 1.495-5.859 5.023-11.922 5.023-6.063 0-11.061-3.528-11.922-5.023A.641.641 0 0 1 0 16.736v-2.869a.841.841 0 0 1 .053-.22c.372-.935 1.347-2.292 2.605-2.656.167-.429.414-1.055.644-1.517a10.195 10.195 0 0 1-.052-1.086c0-1.331.282-2.499 1.132-3.368.397-.406.89-.717 1.474-.952 1.399-1.136 3.392-2.093 6.122-2.093 2.731 0 4.767.957 6.166 2.093.584.235 1.077.546 1.474.952.85.869 1.132 2.037 1.132 3.368 0 .368-.014.733-.052 1.086.23.462.477 1.088.644 1.517 1.258.364 2.233 1.721 2.605 2.656a.832.832 0 0 1 .053.22v2.869a.641.641 0 0 1-.078.256ZM12.172 11h-.344a4.323 4.323 0 0 1-.355.508C10.703 12.455 9.555 13 7.965 13c-1.725 0-2.989-.359-3.782-1.259a2.005 2.005 0 0 1-.085-.104L4 11.741v6.585c1.435.779 4.514 2.179 8 2.179 3.486 0 6.565-1.4 8-2.179v-6.585l-.098-.104s-.033.045-.085.104c-.793.9-2.057 1.259-3.782 1.259-1.59 0-2.738-.545-3.508-1.492a4.323 4.323 0 0 1-.355-.508h-.016.016Zm.641-2.935c.136 1.057.403 1.913.878 2.497.442.544 1.134.938 2.344.938 1.573 0 2.292-.337 2.657-.751.384-.435.558-1.15.558-2.361 0-1.14-.243-1.847-.705-2.319-.477-.488-1.319-.862-2.824-1.025-1.487-.161-2.192.138-2.533.529-.269.307-.437.808-.438 1.578v.021c0 .265.021.562.063.893Zm-1.626 0c.042-.331.063-.628.063-.894v-.02c-.001-.77-.169-1.271-.438-1.578-.341-.391-1.046-.69-2.533-.529-1.505.163-2.347.537-2.824 1.025-.462.472-.705 1.179-.705 2.319 0 1.211.175 1.926.558 2.361.365.414 1.084.751 2.657.751 1.21 0 1.902-.394 2.344-.938.475-.584.742-1.44.878-2.497Z"/><path d="M14.5 14.25a1 1 0 0 1 1 1v2a1 1 0 0 1-2 0v-2a1 1 0 0 1 1-1Zm-5 0a1 1 0 0 1 1 1v2a1 1 0 0 1-2 0v-2a1 1 0 0 1 1-1Z"/></svg>
         <span>Copilot access</span>
       </div>
-      <span class="top-label">新舊制費用試算 · 非官方工具</span>
+      <div class="header-actions">
+        <span class="top-label" data-en="Pricing comparison · Unofficial tool">新舊制費用試算 · 非官方工具</span>
+        <div class="language-switch" role="group" aria-label="語系 / Language" data-en-label="Language">
+          <button type="button" data-language="zh-TW" lang="zh-Hant" aria-pressed="true">中文</button>
+          <button type="button" data-language="en" lang="en" aria-pressed="false">English</button>
+        </div>
+      </div>
     </div>
   </header>
   <div class="shell">
     <section class="intro" aria-labelledby="page-title">
       <div class="eyebrow">LESS SEAT COST. USAGE BILLED SEPARATELY.</div>
-      <h1 id="page-title">席次費變少，總費用也會變少嗎？</h1>
-      <p>調整人數與用量，看看從 <strong>Copilot Business</strong> 切換到 <strong>Copilot access</strong> 的費用差異。<br>新制是自願選擇；省不省，取決於授權組合與實際用量。</p>
+      <h1 id="page-title" data-en="Lower seat fees. Lower total costs?">席次費變少，總費用也會變少嗎？</h1>
+      <p data-en="Adjust users and usage to compare <strong>Copilot Business</strong> with <strong>Copilot access</strong>.<br>Switching is optional. Savings depend on your license mix and actual usage.">調整人數與用量，看看從 <strong>Copilot Business</strong> 切換到 <strong>Copilot access</strong> 的費用差異。<br>新制是自願選擇；省不省，取決於授權組合與實際用量。</p>
     </section>
-    <div class="notice"><strong>先看整個企業，不只看單一席次。</strong>同一 enterprise 不能混用新舊制；以下一律以相同人數、相同月用量比較。</div>
+    <div class="notice" data-en="<strong>Compare the whole enterprise, not individual seats.</strong> The two billing models cannot coexist in one enterprise. Both estimates use the same users and monthly usage."><strong>先看整個企業，不只看單一席次。</strong>同一 enterprise 不能混用新舊制；以下一律以相同人數、相同月用量比較。</div>
     <main id="calculator" class="workspace">
       <section class="inputs panel" aria-labelledby="inputs-title">
         <div class="panel-heading">
-          <h2 id="inputs-title">設定你的情境</h2>
-          <button type="button" class="text-button" id="reset">重設</button>
+          <h2 id="inputs-title" data-en="Set your scenario">設定你的情境</h2>
+          <button type="button" class="text-button" id="reset" data-en="Reset">重設</button>
         </div>
         <div class="field">
-          <label for="people">企業總使用人數 <span class="muted small">N</span></label>
-          <div class="number-wrap"><input id="people" type="number" min="1" max="1000000" step="1" value="100" required aria-describedby="people-help people-error"><span>人</span></div>
-          <p class="field-help" id="people-help">目前 Business 席次數，也是切換後總人數。</p>
+          <label for="people" data-en="Total enterprise users <span class='muted small'>N</span>">企業總使用人數 <span class="muted small">N</span></label>
+          <div class="number-wrap"><input id="people" type="number" min="1" max="1000000" step="1" value="100" required aria-describedby="people-help people-error"><span data-en="users">人</span></div>
+          <p class="field-help" id="people-help" data-en="Your current Business seats and total users after switching.">目前 Business 席次數，也是切換後總人數。</p>
           <p class="error" id="people-error" hidden></p>
         </div>
         <div class="field">
-          <label for="standalone">其中需 Standalone 的人數 <span class="muted small">S</span></label>
-          <div class="number-wrap"><input id="standalone" type="number" min="0" max="100" step="1" value="30" required aria-describedby="standalone-help standalone-error"><span>人</span></div>
-          <p class="field-help" id="standalone-help">沒有 GitHub Enterprise Cloud 授權者，每人月費 US$10。其餘 <strong id="licensed">70</strong> 人已有授權，Copilot 額外席次費 US$0。</p>
+          <label for="standalone" data-en="Users needing Standalone <span class='muted small'>S</span>">其中需 Standalone 的人數 <span class="muted small">S</span></label>
+          <div class="number-wrap"><input id="standalone" type="number" min="0" max="100" step="1" value="30" required aria-describedby="standalone-help standalone-error"><span data-en="users">人</span></div>
+          <p class="field-help" id="standalone-help" data-en="Users without a GitHub Enterprise Cloud license pay US$10 per month. Remaining licensed users: <strong id='licensed'>70</strong>, with a US$0 additional Copilot seat fee.">沒有 GitHub Enterprise Cloud 授權者，每人月費 US$10。其餘 <strong id="licensed">70</strong> 人已有授權，Copilot 額外席次費 US$0。</p>
           <p class="error" id="standalone-error" hidden></p>
         </div>
         <div class="field">
           <label for="usage" id="usage-label">每人平均月用量</label>
-          <div class="mode-switch" role="group" aria-label="用量輸入方式">
-            <button type="button" id="mode-average" aria-pressed="true">每人平均</button>
-            <button type="button" id="mode-total" aria-pressed="false">企業總量</button>
+          <div class="mode-switch" role="group" aria-label="用量輸入方式" data-en-label="Usage input mode">
+            <button type="button" id="mode-average" aria-pressed="true" data-en="Per person">每人平均</button>
+            <button type="button" id="mode-total" aria-pressed="false" data-en="Enterprise total">企業總量</button>
           </div>
           <div class="number-wrap"><input id="usage" type="number" min="0" step="any" value="1000" required aria-describedby="usage-help usage-error"><span>AI Credits</span></div>
-          <p class="field-help" id="usage-help">包含內含額度抵扣的用量，不是只有超額部分。<br><span id="usage-equivalent">企業每月總量 100,000 Credits</span></p>
+          <p class="field-help" id="usage-help" data-en="Include usage covered by the allowance, not just overage.<br><span id='usage-equivalent'>Enterprise total: 100,000 Credits/month</span>">包含內含額度抵扣的用量，不是只有超額部分。<br><span id="usage-equivalent">企業每月總量 100,000 Credits</span></p>
           <p class="error" id="usage-error" hidden></p>
-          <input id="usage-range" type="range" min="0" max="5000" step="1" value="1000" aria-label="調整每人平均月用量" aria-describedby="range-help">
+          <input id="usage-range" type="range" min="0" max="5000" step="1" value="1000" aria-label="調整每人平均月用量" data-en-label="Adjust average monthly usage per person" aria-describedby="range-help">
           <div class="range-labels" id="range-help"><span>0</span><span id="range-max">5,000 Credits／人</span></div>
         </div>
         <div class="presets">
-          <p class="small muted">載入文件範例 · 假設 100 人</p>
-          <div class="preset-buttons" role="group" aria-label="文件試算範例">
-            <button type="button" data-preset="licensed" aria-pressed="false">全部已有授權</button>
-            <button type="button" data-preset="standalone" aria-pressed="false">全 Standalone</button>
-            <button type="button" data-preset="mixed" aria-pressed="true">混合 70／30</button>
+          <p class="small muted" data-en="Load an example · 100 users">載入文件範例 · 假設 100 人</p>
+          <div class="preset-buttons" role="group" aria-label="文件試算範例" data-en-label="Example scenarios from the document">
+            <button type="button" data-preset="licensed" aria-pressed="false" data-en="All licensed">全部已有授權</button>
+            <button type="button" data-preset="standalone" aria-pressed="false" data-en="All Standalone">全 Standalone</button>
+            <button type="button" data-preset="mixed" aria-pressed="true" data-en="Mixed 70/30">混合 70／30</button>
           </div>
         </div>
       </section>
-      <div id="invalid-result" class="empty" role="status" hidden>請先修正左側或上方的輸入，試算結果暫停顯示，避免誤判。</div>
-      <section id="results" class="results" aria-label="費用試算結果">
+      <div id="invalid-result" class="empty" role="status" data-en="Please correct the inputs to the left or above. Results are hidden until the values are valid." hidden>請先修正左側或上方的輸入，試算結果暫停顯示，避免誤判。</div>
+      <section id="results" class="results" aria-label="費用試算結果" data-en-label="Cost estimate results">
         <div class="summary" id="summary" data-state="less">
           <div class="summary-kicker" id="saving-label">新制每月可節省</div>
           <div class="saving-line">
@@ -265,41 +275,41 @@
           <p class="annual" id="annual">相同人數與用量維持 12 個月，可省 US$7,200。</p>
         </div>
         <div class="comparison panel">
-          <div class="comparison-heading"><h2>每月費用，拆開看</h2><span class="small muted">USD · 不含稅</span></div>
+          <div class="comparison-heading"><h2 data-en="Monthly cost breakdown">每月費用，拆開看</h2><span class="small muted" data-en="USD · Before tax">USD · 不含稅</span></div>
           <div class="cost-grid">
             <div class="cost-column">
-              <p class="plan-label">現制 · 含共用額度</p>
+              <p class="plan-label" data-en="Current · Pooled allowance">現制 · 含共用額度</p>
               <h3 class="plan-title">Copilot Business</h3>
-              <p class="plan-price money"><output id="business-total">US$1,900</output> <span class="price-unit">／月</span></p>
+              <p class="plan-price money"><output id="business-total">US$1,900</output> <span class="price-unit" data-en="/month">／月</span></p>
               <div class="cost-bar" aria-hidden="true"><div class="bar-fixed" id="business-fixed-bar"></div><div class="bar-usage" id="business-usage-bar"></div></div>
               <div class="cost-rows">
-                <div class="cost-row"><span>固定席次費</span><span class="mono" id="business-fixed">US$1,900</span></div>
-                <div class="cost-row"><span>超額用量費</span><span class="mono" id="business-overage">US$0</span></div>
-                <div class="cost-row muted"><span>每人平均</span><span class="mono" id="business-average">US$19</span></div>
+                <div class="cost-row"><span data-en="Fixed seat fees">固定席次費</span><span class="mono" id="business-fixed">US$1,900</span></div>
+                <div class="cost-row"><span data-en="Overage charges">超額用量費</span><span class="mono" id="business-overage">US$0</span></div>
+                <div class="cost-row muted"><span data-en="Per person">每人平均</span><span class="mono" id="business-average">US$19</span></div>
               </div>
               <p class="field-help" id="allowance-note">內含 190,000 Credits，全企業彙集共用。</p>
             </div>
             <div class="cost-column">
-              <p class="plan-label">新制 · 無內含額度</p>
+              <p class="plan-label" data-en="New · No included allowance">新制 · 無內含額度</p>
               <h3 class="plan-title">Copilot access</h3>
-              <p class="plan-price money"><output id="access-total">US$1,300</output> <span class="price-unit">／月</span></p>
+              <p class="plan-price money"><output id="access-total">US$1,300</output> <span class="price-unit" data-en="/month">／月</span></p>
               <div class="cost-bar" aria-hidden="true"><div class="bar-fixed" id="access-fixed-bar"></div><div class="bar-usage" id="access-usage-bar"></div></div>
               <div class="cost-rows">
-                <div class="cost-row"><span>Standalone 固定費</span><span class="mono" id="access-fixed">US$300</span></div>
-                <div class="cost-row"><span>全部計量用量費</span><span class="mono" id="access-usage">US$1,000</span></div>
-                <div class="cost-row muted"><span>每人平均</span><span class="mono" id="access-average">US$13</span></div>
+                <div class="cost-row"><span data-en="Standalone seat fees">Standalone 固定費</span><span class="mono" id="access-fixed">US$300</span></div>
+                <div class="cost-row"><span data-en="All metered usage">全部計量用量費</span><span class="mono" id="access-usage">US$1,000</span></div>
+                <div class="cost-row muted"><span data-en="Per person">每人平均</span><span class="mono" id="access-average">US$13</span></div>
               </div>
               <p class="field-help" id="access-note">30 人 × US$10；所有計量用量另付費。</p>
             </div>
           </div>
-          <div class="legend" aria-label="費用長條圖圖例"><span>固定席次費</span><span>另付用量費</span></div>
+          <div class="legend" aria-label="費用長條圖圖例" data-en-label="Cost breakdown legend"><span data-en="Fixed seat fees">固定席次費</span><span data-en="Usage charges">另付用量費</span></div>
           <p class="inline-note" id="allowance-status">目前用量尚未超過 Business 共用額度；新制則從第一次需計量的使用開始收費。</p>
         </div>
         <div class="chart-panel panel">
-          <div class="chart-heading"><h2>用量增加後，哪個更省？</h2><span class="threshold" id="threshold">平衡點 1,600 Credits／人</span></div>
+          <div class="chart-heading"><h2 data-en="What if usage grows?">用量增加後，哪個更省？</h2><span class="threshold" id="threshold">平衡點 1,600 Credits／人</span></div>
           <p class="small muted" id="threshold-total">企業總量 160,000 Credits／月時同價。</p>
           <svg id="chart-canvas" class="chart" viewBox="0 0 660 265" role="img" aria-labelledby="chart-title chart-desc">
-            <title id="chart-title">每人平均用量與每人月費比較</title>
+            <title id="chart-title" data-en="Average monthly usage versus monthly cost per person">每人平均用量與每人月費比較</title>
             <desc id="chart-desc">比較 Business 與 access 的費用曲線。</desc>
             <g id="chart-grid"></g>
             <line id="chart-axis" class="axis" x1="58" y1="210" x2="630" y2="210"></line>
@@ -308,8 +318,8 @@
             <line class="marker" id="current-line" y1="27" y2="210"></line>
             <circle id="threshold-dot" r="5" fill="var(--paper)" stroke="var(--accent)" stroke-width="2"></circle>
             <circle id="current-dot" r="5" fill="var(--accent)" stroke="var(--paper)" stroke-width="2"></circle>
-            <text x="58" y="15">US$／人／月</text>
-            <text id="chart-axis-label" x="630" y="258" text-anchor="end">每人平均月用量（AI Credits）</text>
+            <text x="58" y="15" data-en="US$ / person / month">US$／人／月</text>
+            <text id="chart-axis-label" x="630" y="258" text-anchor="end" data-en="Monthly AI Credits / person">每人平均月用量（AI Credits）</text>
           </svg>
           <div class="chart-legend"><span>Business</span><span>access</span><span id="current-caption">垂直虛線：目前 1,000 Credits／人</span></div>
           <p class="chart-note" id="threshold-note">低於 1,600 Credits，新制較省；超過後 Business 較便宜。</p>
@@ -318,58 +328,58 @@
       <p class="sr-only" id="live-result" role="status" aria-live="polite" aria-atomic="true"></p>
     </main>
     <section class="guide" aria-labelledby="guide-title">
-      <div class="guide-heading"><h2 id="guide-title">看懂差額，先記住這三件事</h2><span class="small muted">計價改變，不是所有 AI 使用都免費</span></div>
+      <div class="guide-heading"><h2 id="guide-title" data-en="Three things behind the difference">看懂差額，先記住這三件事</h2><span class="small muted" data-en="A new billing model does not make all AI usage free">計價改變，不是所有 AI 使用都免費</span></div>
       <div class="guide-grid">
-        <article><h3>US$0 是額外席次費，不是零帳單</h3><p>已有 GitHub Enterprise Cloud 授權者不再付 Copilot 額外席次費；既有授權成本仍存在，也未納入此試算。需計量的 AI 用量仍另計。</p></article>
-        <article><h3>Credits 不是提問次數</h3><p>1 AI Credit＝US$0.01。依模型與輸入、輸出、快取等 token 消耗計價，不是每問一次扣一點。程式碼補全與下一步編輯建議不以 AI Credits 計費。</p></article>
-        <article><h3>有內含額度，和從零計費的差別</h3><p>Business 每人內含 1,900 Credits，可彙集共用；access 沒有內含額度。低用量可能省費，高用量則須看 Standalone 的人數。</p></article>
+        <article><h3 data-en="US$0 seat fee does not mean a US$0 bill">US$0 是額外席次費，不是零帳單</h3><p data-en="Existing GitHub Enterprise Cloud license holders pay no additional Copilot seat fee. Their existing license cost still applies and is excluded here. Metered AI usage is billed separately.">已有 GitHub Enterprise Cloud 授權者不再付 Copilot 額外席次費；既有授權成本仍存在，也未納入此試算。需計量的 AI 用量仍另計。</p></article>
+        <article><h3 data-en="Credits are not prompt counts">Credits 不是提問次數</h3><p data-en="1 AI Credit = US$0.01. Charges depend on the model and input, output, and cached tokens, not a fixed credit per question. Code completions and next edit suggestions do not consume AI Credits.">1 AI Credit＝US$0.01。依模型與輸入、輸出、快取等 token 消耗計價，不是每問一次扣一點。程式碼補全與下一步編輯建議不以 AI Credits 計費。</p></article>
+        <article><h3 data-en="Included allowance vs. metering from first use">有內含額度，和從零計費的差別</h3><p data-en="Business includes 1,900 Credits per user, pooled across the enterprise. Access has no included allowance. Low usage may save money; at higher usage, the Standalone user count matters.">Business 每人內含 1,900 Credits，可彙集共用；access 沒有內含額度。低用量可能省費，高用量則須看 Standalone 的人數。</p></article>
       </div>
     </section>
-    <section aria-label="公式與移轉說明">
+    <section aria-label="公式與移轉說明" data-en-label="Formulas and transition guidance">
       <details>
-        <summary>這些費用怎麼算？查看公式與價格假設</summary>
-        <p>N＝總人數；S＝需 Standalone 人數；U＝企業每月總計量用量，含目前由內含額度抵扣的用量。</p>
+        <summary data-en="How are costs calculated? Formulas and assumptions">這些費用怎麼算？查看公式與價格假設</summary>
+        <p data-en="N = total users; S = users needing Standalone; U = total monthly metered usage, including usage currently covered by the allowance.">N＝總人數；S＝需 Standalone 人數；U＝企業每月總計量用量，含目前由內含額度抵扣的用量。</p>
         <div class="formula mono">
-          <p>現制月成本＝19 × N ＋ max(0, U − 1,900 × N) × 0.01</p>
-          <p>新制月成本＝10 × S ＋ U × 0.01</p>
-          <p>每月節省＝現制月成本 − 新制月成本</p>
-          <p>每人平均損益平衡用量＝1,900 − 1,000 × (S ÷ N) Credits</p>
+          <p data-en="Business monthly cost = 19 × N + max(0, U − 1,900 × N) × 0.01">現制月成本＝19 × N ＋ max(0, U − 1,900 × N) × 0.01</p>
+          <p data-en="Access monthly cost = 10 × S + U × 0.01">新制月成本＝10 × S ＋ U × 0.01</p>
+          <p data-en="Monthly savings = Business monthly cost − access monthly cost">每月節省＝現制月成本 − 新制月成本</p>
+          <p data-en="Break-even usage per person = 1,900 − 1,000 × (S ÷ N) Credits">每人平均損益平衡用量＝1,900 − 1,000 × (S ÷ N) Credits</p>
         </div>
         <p id="substitution"></p>
-        <p>公式適用於 N &gt; 0、0 ≤ S ≤ N。本頁以 Business 為比較基準；Copilot Enterprise 的標準價格為每人每月 US$39、內含 3,900 Credits，<strong>不屬於此處試算基準</strong>。</p>
-        <p class="muted">假設兩制使用範圍、用量、計量費率相同，以美元標準價格比較；不含稅、合約折扣及新增購買 GitHub Enterprise Cloud 授權成本。年差額只將同一月情境乘以 12，不是成長預測。</p>
+        <p data-en="These formulas require N &gt; 0 and 0 ≤ S ≤ N. This calculator uses Business as its baseline. Copilot Enterprise costs US$39 per user per month with 3,900 included Credits; <strong>it is not the baseline used here</strong>.">公式適用於 N &gt; 0、0 ≤ S ≤ N。本頁以 Business 為比較基準；Copilot Enterprise 的標準價格為每人每月 US$39、內含 3,900 Credits，<strong>不屬於此處試算基準</strong>。</p>
+        <p class="muted" data-en="Both models assume the same scope, usage, and metered rates at standard USD prices. Tax, contract discounts, and new GitHub Enterprise Cloud license purchases are excluded. Annual differences multiply one monthly scenario by 12; they are not growth forecasts.">假設兩制使用範圍、用量、計量費率相同，以美元標準價格比較；不含稅、合約折扣及新增購買 GitHub Enterprise Cloud 授權成本。年差額只將同一月情境乘以 12，不是成長預測。</p>
       </details>
       <details>
-        <summary>能不能只讓低用量的人切換？功能會改變嗎？</summary>
-        <p><strong>不能逐席挑選新舊制。</strong>同一 enterprise 不能混用 Copilot access 與 Business／Enterprise，即使分屬不同 organization 也不行；但 access 內可混用「已有 Enterprise Cloud 授權」及 Standalone 兩種存取方式。</p>
-        <p>access 具備與 Copilot Enterprise 相同的功能與模型使用資格，仍受管理員政策及支出控制限制。<strong>不會自動開通</strong>：即使已有授權，管理員仍須指派 Copilot 席次。</p>
+        <summary data-en="Can only low-usage users switch? Do features change?">能不能只讓低用量的人切換？功能會改變嗎？</summary>
+        <p data-en="<strong>You cannot choose the billing model seat by seat.</strong> One enterprise cannot mix Copilot access with Business or Enterprise, even across different organizations. Within access, existing Enterprise Cloud licenses and Standalone can coexist."><strong>不能逐席挑選新舊制。</strong>同一 enterprise 不能混用 Copilot access 與 Business／Enterprise，即使分屬不同 organization 也不行；但 access 內可混用「已有 Enterprise Cloud 授權」及 Standalone 兩種存取方式。</p>
+        <p data-en="Access has the same feature and model eligibility as Copilot Enterprise, subject to administrator policies and spending controls. <strong>Access is not automatic:</strong> administrators must still assign Copilot seats, including to existing license holders.">access 具備與 Copilot Enterprise 相同的功能與模型使用資格，仍受管理員政策及支出控制限制。<strong>不會自動開通</strong>：即使已有授權，管理員仍須指派 Copilot 席次。</p>
       </details>
       <details>
-        <summary>何時可以切換？誰符合申請資格？</summary>
-        <p>依 2026 年 11 月 5 日核對的官方頁面：有 GitHub 或 Microsoft 客戶業務團隊服務的企業，自 <strong>2026 年 10 月 28 日</strong>起可洽詢新建或移轉；self-service 尚未開放，將分階段推出。GitHub Free／Team 組織及 self-service Enterprise Cloud 試用不適用。</p>
-        <p>移轉為自願，既有訂閱不會自動切換。生效日為月份第一天，須與業務確認；聯繫業務不代表立即變更，也不保證移轉日期。開放狀態可能變動，申請前請再查閱官方公告。</p>
+        <summary data-en="When can we switch, and who is eligible?">何時可以切換？誰符合申請資格？</summary>
+        <p data-en="According to the official page checked on November 5, 2026, enterprises with a GitHub or Microsoft account team can discuss setup or migration starting <strong>October 28, 2026</strong>. Self-service is not yet available and will roll out in stages. GitHub Free/Team organizations and self-service Enterprise Cloud trials are ineligible.">依 2026 年 11 月 5 日核對的官方頁面：有 GitHub 或 Microsoft 客戶業務團隊服務的企業，自 <strong>2026 年 10 月 28 日</strong>起可洽詢新建或移轉；self-service 尚未開放，將分階段推出。GitHub Free／Team 組織及 self-service Enterprise Cloud 試用不適用。</p>
+        <p data-en="Migration is voluntary; existing subscriptions do not switch automatically. Transitions take effect on the first day of a month, as confirmed with your account team. Contacting sales does not immediately change billing or guarantee a date. Availability may change; check the latest announcement before applying.">移轉為自願，既有訂閱不會自動切換。生效日為月份第一天，須與業務確認；聯繫業務不代表立即變更，也不保證移轉日期。開放狀態可能變動，申請前請再查閱官方公告。</p>
       </details>
       <details>
-        <summary>核准切換前的檢查清單</summary>
-        <p class="muted small">以下勾選僅供本次閱讀使用，重新整理後不保留。</p>
+        <summary data-en="Checklist before approving a transition">核准切換前的檢查清單</summary>
+        <p class="muted small" data-en="These checkboxes are for this reading session only and are not saved after a refresh.">以下勾選僅供本次閱讀使用，重新整理後不保留。</p>
         <div class="checklist">
-          <label><input type="checkbox"><span>使用相同月份、人數與使用範圍比較。</span></label>
-          <label><input type="checkbox"><span>取得完整用量，包含內含額度抵扣部分。</span></label>
-          <label><input type="checkbox"><span>確認既有 Enterprise Cloud 授權與 Standalone 人數。</span></label>
-          <label><input type="checkbox"><span>確認合約折扣、帳戶價格、移轉條款與生效日。</span></label>
-          <label><input type="checkbox"><span>設定預算及支出控制，納入人數與用量成長。</span></label>
-          <label><input type="checkbox"><span>保持 AI Controls 的 AI credits paid usage 政策啟用。</span></label>
-          <label><input type="checkbox"><span>若只允許 <code>*.business.githubcopilot.com</code>，加入 <code>*.enterprise.githubcopilot.com</code>；Standalone 也適用。</span></label>
+          <label><input type="checkbox"><span data-en="Compare the same month, users, and scope.">使用相同月份、人數與使用範圍比較。</span></label>
+          <label><input type="checkbox"><span data-en="Obtain complete usage, including the portion covered by the allowance.">取得完整用量，包含內含額度抵扣部分。</span></label>
+          <label><input type="checkbox"><span data-en="Confirm existing Enterprise Cloud licenses and the Standalone user count.">確認既有 Enterprise Cloud 授權與 Standalone 人數。</span></label>
+          <label><input type="checkbox"><span data-en="Confirm discounts, account-specific prices, migration terms, and the effective date.">確認合約折扣、帳戶價格、移轉條款與生效日。</span></label>
+          <label><input type="checkbox"><span data-en="Set budgets and spending controls, accounting for user and usage growth.">設定預算及支出控制，納入人數與用量成長。</span></label>
+          <label><input type="checkbox"><span data-en="Keep the AI credits paid usage policy enabled in AI Controls.">保持 AI Controls 的 AI credits paid usage 政策啟用。</span></label>
+          <label><input type="checkbox"><span data-en="If only <code>*.business.githubcopilot.com</code> is allowed, add <code>*.enterprise.githubcopilot.com</code>. This also applies to Standalone.">若只允許 <code>*.business.githubcopilot.com</code>，加入 <code>*.enterprise.githubcopilot.com</code>；Standalone 也適用。</span></label>
         </div>
       </details>
     </section>
     <footer>
-      <p>依 <code>copilot-access.md</code> 建立 · 預設與快捷情境皆為假設性示例，非公司實際資料。試算不代表帳單或官方省費保證。</p>
-      <p>價格及開放狀態核對日期：2026-11-05。實際費用與資格以帳戶合約、完整用量及官方最新規則為準。數字可能四捨五入，圖表按當前授權比例換算每人月費。</p>
-      <p class="source-links"><a href="https://docs.github.com/en/enterprise-cloud@latest/copilot/get-started/whats-changing-with-github-enterprise-and-copilot" target="_blank" rel="noopener noreferrer">官方計價異動說明 ↗</a><a href="https://docs.github.com/en/enterprise-cloud@latest/copilot/reference/copilot-billing/models-and-pricing" target="_blank" rel="noopener noreferrer">模型與 Credits 定價 ↗</a></p>
+      <p data-en="Based on <code>copilot-access.md</code>. All default and preset scenarios are hypothetical, not actual company data. Estimates are not bills or official savings guarantees.">依 <code>copilot-access.md</code> 建立 · 預設與快捷情境皆為假設性示例，非公司實際資料。試算不代表帳單或官方省費保證。</p>
+      <p data-en="Pricing and availability checked: 2026-11-05. Actual costs and eligibility depend on your contract, complete usage, and the latest official rules. Figures may be rounded; the chart shows monthly cost per person at the current license mix.">價格及開放狀態核對日期：2026-11-05。實際費用與資格以帳戶合約、完整用量及官方最新規則為準。數字可能四捨五入，圖表按當前授權比例換算每人月費。</p>
+      <p class="source-links"><a href="https://docs.github.com/en/enterprise-cloud@latest/copilot/get-started/whats-changing-with-github-enterprise-and-copilot" target="_blank" rel="noopener noreferrer" data-en="Official billing changes ↗">官方計價異動說明 ↗</a><a href="https://docs.github.com/en/enterprise-cloud@latest/copilot/reference/copilot-billing/models-and-pricing" target="_blank" rel="noopener noreferrer" data-en="Models and Credits pricing ↗">模型與 Credits 定價 ↗</a></p>
     </footer>
   </div>
-  <noscript><p class="notice">此頁需要啟用 JavaScript 才能互動試算。上方為 100 人、30 人 Standalone、平均 1,000 Credits 的靜態範例，不會隨輸入更新。</p></noscript>
+  <noscript><p class="notice" lang="zh-Hant">此頁需要啟用 JavaScript 才能切換語系及互動試算。上方為 100 人、30 人 Standalone、平均 1,000 Credits 的靜態範例，不會隨輸入更新。</p><p class="notice" lang="en">Enable JavaScript to switch languages and calculate costs. The page above is a static example: 100 users, 30 on Standalone, and 1,000 Credits per person. Inputs will not update the results.</p></noscript>
   <script>
     "use strict";
     const $ = (id) => document.getElementById(id);
@@ -377,7 +387,102 @@
     const standaloneInput = $("standalone");
     const usageInput = $("usage");
     const usageRange = $("usage-range");
-    const countFormat = new Intl.NumberFormat("zh-TW", { maximumFractionDigits: 2 });
+    const messages = {
+      "zh-TW": {
+        pageTitle: "Copilot access｜新舊制費用試算",
+        pageDescription: "調整人數、授權組合與 AI Credits 用量，比較 Copilot Business 與 Copilot access 的月費及損益平衡點。",
+        usageAverageLabel: "每人平均月用量",
+        usageTotalLabel: "企業每月總用量",
+        invalidPeople: "請輸入 1 至 1,000,000 的整數人數。",
+        invalidStandalone: "請輸入 0 至 {n} 的整數，不可超過總人數。",
+        invalidPeopleFirst: "請先輸入有效的企業總人數。",
+        invalidUsage: "請輸入非負數；企業每月總量上限為 1 兆 Credits。",
+        chartDescription: "每人平均用量 {threshold} Credits 時同價。目前每人平均 {average} Credits，Business 每人月費 {business}，access {access}。",
+        invalidEquivalent: "輸入有效數字後顯示對應用量。",
+        invalidLive: "輸入尚未有效，試算結果暫停顯示。",
+        savingLess: "新制每月可節省",
+        savingMore: "新制每月會多付",
+        savingEqual: "新舊制每月同價",
+        percentEqual: "切換不會帶來費用節省",
+        percentLess: "較現制減少 {percent}%",
+        percentMore: "較現制增加 {percent}%",
+        recommendEqual: "僅達同價，無須單純為省費而移轉；可另評估功能需求與管理影響。",
+        recommendMore: "此用量下，維持 Business 較省。新制固定費與全部計量用量費相加後，已超過現制。",
+        recommendLicensed: "已有授權且用量偏低，新制可減少固定席次支出；仍須確認合約與企業資格。",
+        recommendStandalone: "目前用量低於 Standalone 平衡點，新制有成本優勢；用量成長後請重新評估。",
+        recommendMixed: "混合授權須以整個企業評估；此情境下，新制有成本優勢。",
+        annualEqual: "相同人數與用量維持 12 個月，年費差額也是 US$0。",
+        annualLess: "相同人數與用量維持 12 個月，可省 {amount}。",
+        annualMore: "相同人數與用量維持 12 個月，會多付 {amount}。",
+        allowanceNote: "內含 {credits} Credits，全企業彙集共用。",
+        accessNote: "{users} 人 × US$10；所有計量用量另付費。",
+        allowanceWithin: "目前用量未超過 Business 共用額度；新制則從第一次需計量的使用開始收費。",
+        allowanceOver: "Business 已超額 {credits} Credits，只有超出部分另付費；新制所有計量用量都另計。",
+        approximate: "約 ",
+        threshold: "平衡點 {value} Credits／人",
+        thresholdTotal: "企業總量 {credits} Credits／月時同價。",
+        thresholdLicensed: "低於 1,900 Credits，新制較省；達到或超過後，依標準價格計算皆同價，不會因高用量而倒掛。",
+        thresholdOther: "低於 {value} Credits，新制較省；等於精確平衡點時同價，超過後 Business 較便宜。",
+        equivalentTotal: "企業每月總量 {credits} Credits",
+        equivalentAverage: "每人平均 {credits} Credits／月",
+        currentCaption: "垂直虛線：目前 {credits} Credits／人",
+        substitution: "目前代入：N＝{n}、S＝{s}、U＝{total}。現制 {business}；新制 {access}；現制減新制＝{difference}／月。",
+        rangeValue: "每人平均 {credits} AI Credits／月",
+        rangeMax: "{credits} Credits／人",
+        liveResult: "Business 每月 {business}，access 每月 {access}。{label} {amount}。"
+      },
+      en: {
+        pageTitle: "Copilot access | Pricing comparison",
+        pageDescription: "Adjust users, license mix, and AI Credits usage to compare monthly costs and break-even points for Copilot Business and Copilot access.",
+        usageAverageLabel: "Average monthly usage per person",
+        usageTotalLabel: "Total monthly enterprise usage",
+        invalidPeople: "Enter a whole number of users from 1 to 1,000,000.",
+        invalidStandalone: "Enter a whole number from 0 to {n}, no more than the total users.",
+        invalidPeopleFirst: "Enter a valid enterprise user count first.",
+        invalidUsage: "Enter a non-negative number. Total monthly enterprise usage cannot exceed 1 trillion Credits.",
+        chartDescription: "Costs are equal at {threshold} Credits per person. Current average: {average} Credits per person. Monthly cost per person: Business {business}, access {access}.",
+        invalidEquivalent: "Enter valid values to see the equivalent usage.",
+        invalidLive: "Invalid inputs. Cost estimates are hidden.",
+        savingLess: "Monthly savings with access",
+        savingMore: "Monthly increase with access",
+        savingEqual: "Both models cost the same per month",
+        percentEqual: "Switching does not reduce costs",
+        percentLess: "{percent}% lower than Business",
+        percentMore: "{percent}% higher than Business",
+        recommendEqual: "At equal cost, there is no need to migrate solely to save money. Consider feature needs and administrative impact separately.",
+        recommendMore: "Business costs less at this usage level. Access seat fees plus all metered usage exceed the current model.",
+        recommendLicensed: "With existing licenses and low usage, access can reduce fixed seat costs. Confirm your contract and enterprise eligibility.",
+        recommendStandalone: "Usage is below the Standalone break-even point, so access costs less. Reassess if usage grows.",
+        recommendMixed: "Evaluate mixed licenses across the whole enterprise. Access costs less in this scenario.",
+        annualEqual: "At the same users and usage for 12 months, the annual difference is also US$0.",
+        annualLess: "At the same users and usage for 12 months, save {amount}.",
+        annualMore: "At the same users and usage for 12 months, pay {amount} more.",
+        allowanceNote: "Includes {credits} Credits, pooled across the enterprise.",
+        accessNote: "Standalone seats: {users} × US$10. All metered usage is billed separately.",
+        allowanceWithin: "Usage is within the Business pooled allowance. Access bills metered usage from the first use.",
+        allowanceOver: "Business exceeds its allowance by {credits} Credits; only overage is billed separately. Access bills all metered usage.",
+        approximate: "about ",
+        threshold: "Break-even: {value} Credits/person",
+        thresholdTotal: "Equal cost at an enterprise total of {credits} Credits/month.",
+        thresholdLicensed: "Below 1,900 Credits, access costs less. At or above that level, both models cost the same at standard prices; higher usage does not make access more expensive.",
+        thresholdOther: "Below {value} Credits, access costs less. Costs are equal at the exact break-even point; above it, Business costs less.",
+        equivalentTotal: "Enterprise total: {credits} Credits/month",
+        equivalentAverage: "Average: {credits} Credits/person/month",
+        currentCaption: "Vertical dashed line: current {credits} Credits/person",
+        substitution: "Current inputs: N = {n}, S = {s}, U = {total}. Business: {business}; access: {access}; Business minus access: {difference}/month.",
+        rangeValue: "Average monthly usage: {credits} AI Credits per person",
+        rangeMax: "{credits} Credits/person",
+        liveResult: "Business: {business} per month. Access: {access} per month. {label}: {amount}."
+      }
+    };
+    const localizedElements = Array.from(document.querySelectorAll("[data-en]"), (element) => ({
+      element, zh: element.innerHTML, en: element.dataset.en
+    }));
+    const localizedLabels = Array.from(document.querySelectorAll("[data-en-label]"), (element) => ({
+      element, zh: element.getAttribute("aria-label"), en: element.dataset.enLabel
+    }));
+    let language = "zh-TW";
+    let countFormat = new Intl.NumberFormat("zh-TW", { maximumFractionDigits: 2 });
     const moneyFormat = new Intl.NumberFormat("en-US", { minimumFractionDigits: 0, maximumFractionDigits: 2 });
     const preciseMoneyFormat = new Intl.NumberFormat("en-US", { maximumFractionDigits: 4 });
     const svgNS = "http://www.w3.org/2000/svg";
@@ -392,6 +497,32 @@
     const money = (value) => "US$" + moneyFormat.format(value);
     const count = (value) => countFormat.format(value);
     const setText = (id, value) => { $(id).textContent = value; };
+
+    function t(key, values = {}) {
+      const template = messages[language][key];
+      if (typeof template !== "string") throw new Error(`Missing ${language} translation: ${key}`);
+      return template.replace(/\{(\w+)\}/g, (_, name) => {
+        if (!Object.hasOwn(values, name)) throw new Error(`Missing translation parameter: ${key}.${name}`);
+        return String(values[name]);
+      });
+    }
+
+    function setLanguage(nextLanguage) {
+      if (!Object.hasOwn(messages, nextLanguage)) throw new Error(`Unsupported language: ${nextLanguage}`);
+      language = nextLanguage;
+      document.documentElement.lang = language === "en" ? "en" : "zh-Hant";
+      document.title = t("pageTitle");
+      $("page-description").setAttribute("content", t("pageDescription"));
+      countFormat = new Intl.NumberFormat(language === "en" ? "en-US" : "zh-TW", { maximumFractionDigits: 2 });
+      // Only page-authored markup is localized; input values are rendered with textContent.
+      localizedElements.forEach(({ element, zh, en }) => { element.innerHTML = language === "en" ? en : zh; });
+      localizedLabels.forEach(({ element, zh, en }) => { element.setAttribute("aria-label", language === "en" ? en : zh); });
+      document.querySelectorAll("[data-language]").forEach((button) => {
+        button.setAttribute("aria-pressed", String(button.dataset.language === language));
+      });
+      setText("live-result", "");
+      update();
+    }
 
     function calculate(n, s, total) {
       const businessFixed = 19 * n;
@@ -423,9 +554,9 @@
       const validS = Number.isSafeInteger(s) && s >= 0 && validN && s <= n;
       const total = mode === "average" ? usage * n : usage;
       const validUsage = Number.isFinite(usage) && usage >= 0 && Number.isFinite(total) && total <= 1e12;
-      markError(peopleInput, "people-error", validN ? "" : "請輸入 1 至 1,000,000 的整數人數。");
-      markError(standaloneInput, "standalone-error", validS ? "" : validN ? "請輸入 0 至 " + count(n) + " 的整數，不可超過總人數。" : "請先輸入有效的企業總人數。");
-      markError(usageInput, "usage-error", validUsage ? "" : "請輸入非負數；企業每月總量上限為 1 兆 Credits。");
+      markError(peopleInput, "people-error", validN ? "" : t("invalidPeople"));
+      markError(standaloneInput, "standalone-error", validS ? "" : validN ? t("invalidStandalone", { n: count(n) }) : t("invalidPeopleFirst"));
+      markError(usageInput, "usage-error", validUsage ? "" : t("invalidUsage"));
       standaloneInput.max = validN ? String(n) : "1000000";
       setText("licensed", validS ? count(n - s) : "—");
       return validN && validS && validUsage ? calculate(n, s, total) : null;
@@ -470,10 +601,12 @@
       $("current-dot").setAttribute("cy", y(model.access / model.n));
       $("threshold-dot").setAttribute("cx", x(model.threshold));
       $("threshold-dot").setAttribute("cy", y(19));
-      setText("chart-desc", `每人平均用量 ${count(model.threshold)} Credits 時同價。目前每人平均 ${count(model.average)} Credits，Business 每人月費 ${money(model.business / model.n)}，access ${money(model.access / model.n)}。`);
+      setText("chart-desc", t("chartDescription", { threshold: count(model.threshold), average: count(model.average), business: money(model.business / model.n), access: money(model.access / model.n) }));
     }
 
     function update() {
+      setText("usage-label", t(mode === "average" ? "usageAverageLabel" : "usageTotalLabel"));
+      setText("range-max", t("rangeMax", { credits: count(Number(usageRange.max)) }));
       const model = readInputs();
       $("results").hidden = !model;
       $("invalid-result").hidden = Boolean(model);
@@ -483,8 +616,9 @@
       clearTimeout(announcementTimer);
       if (!model) {
         lastValid = null;
-        setText("usage-equivalent", "輸入有效數字後顯示對應用量。");
-        setText("live-result", "輸入尚未有效，試算結果暫停顯示。");
+        setText("usage-equivalent", t("invalidEquivalent"));
+        setText("live-result", t("invalidLive"));
+        usageRange.removeAttribute("aria-valuetext");
         document.querySelectorAll("[data-preset]").forEach((button) => button.setAttribute("aria-pressed", "false"));
         return;
       }
@@ -492,14 +626,14 @@
       const { n, s, total, average, business, access, difference, threshold, thresholdTotal } = model;
       const state = Math.abs(difference) < 1e-8 ? "equal" : difference > 0 ? "less" : "more";
       $("summary").dataset.state = state;
-      setText("saving-label", state === "less" ? "新制每月可節省" : state === "more" ? "新制每月會多付" : "新舊制每月同價");
+      setText("saving-label", t(state === "less" ? "savingLess" : state === "more" ? "savingMore" : "savingEqual"));
       const absoluteDifference = Math.abs(difference);
       setText("saving", state === "equal" ? money(0) : absoluteDifference < 0.01 ? "< US$0.01" : money(absoluteDifference));
       const percentage = Math.abs(difference) / business * 100;
-      setText("saving-percent", state === "equal" ? "切換不會帶來費用節省" : `較現制${state === "less" ? "減少" : "增加"} ${percentage > 0 && percentage < 0.1 ? "< 0.1" : percentage.toFixed(1)}%`);
-      setText("recommendation", state === "equal" ? "僅達同價，無須單純為省費而移轉；可另評估功能需求與管理影響。" : state === "more" ? "此用量下，維持 Business 較省。新制固定費與全部計量用量費相加後，已超過現制。" : s === 0 ? "已有授權且用量偏低，新制可減少固定席次支出；仍須確認合約與企業資格。" : s === n ? "目前用量低於 Standalone 平衡點，新制有成本優勢；用量成長後請重新評估。" : "混合授權須以整個企業評估；此情境下，新制有成本優勢。");
+      setText("saving-percent", t(state === "equal" ? "percentEqual" : state === "less" ? "percentLess" : "percentMore", { percent: percentage > 0 && percentage < 0.1 ? "< 0.1" : percentage.toFixed(1) }));
+      setText("recommendation", t(state === "equal" ? "recommendEqual" : state === "more" ? "recommendMore" : s === 0 ? "recommendLicensed" : s === n ? "recommendStandalone" : "recommendMixed"));
       const yearly = absoluteDifference * 12;
-      setText("annual", state === "equal" ? "相同人數與用量維持 12 個月，年費差額也是 US$0。" : `相同人數與用量維持 12 個月，${state === "less" ? "可省" : "會多付"} ${yearly < 0.01 ? "< US$0.01" : money(yearly)}。`);
+      setText("annual", t(state === "equal" ? "annualEqual" : state === "less" ? "annualLess" : "annualMore", { amount: yearly < 0.01 ? "< US$0.01" : money(yearly) }));
       for (const [id, value] of Object.entries({
         "business-total": business, "access-total": access,
         "business-fixed": model.businessFixed, "business-overage": model.businessOverage,
@@ -511,28 +645,28 @@
         "business-fixed-bar": model.businessFixed, "business-usage-bar": model.businessOverage,
         "access-fixed-bar": model.accessFixed, "access-usage-bar": model.accessUsage
       })) $(id).style.width = (value / maxCost * 100) + "%";
-      setText("allowance-note", `內含 ${count(1900 * n)} Credits，全企業彙集共用。`);
-      setText("access-note", `${count(s)} 人 × US$10；所有計量用量另付費。`);
-      setText("allowance-status", total <= 1900 * n ? "目前用量未超過 Business 共用額度；新制則從第一次需計量的使用開始收費。" : `Business 已超額 ${count(total - 1900 * n)} Credits，只有超出部分另付費；新制所有計量用量都另計。`);
-      const approximate = Number.isInteger(threshold) ? "" : "約 ";
-      setText("threshold", `平衡點 ${approximate}${count(threshold)} Credits／人`);
-      setText("threshold-total", `企業總量 ${count(thresholdTotal)} Credits／月時同價。`);
-      setText("threshold-note", s === 0 ? "低於 1,900 Credits，新制較省；達到或超過後，依標準價格計算皆同價，不會因高用量而倒掛。" : `低於 ${approximate}${count(threshold)} Credits，新制較省；等於精確平衡點時同價，超過後 Business 較便宜。`);
-      setText("usage-equivalent", mode === "average" ? `企業每月總量 ${count(total)} Credits` : `每人平均 ${count(average)} Credits／月`);
-      setText("current-caption", `垂直虛線：目前 ${count(average)} Credits／人`);
-      setText("substitution", `目前代入：N＝${count(n)}、S＝${count(s)}、U＝${count(total)}。現制 ${money(business)}；新制 ${money(access)}；現制減新制＝${difference < 0 ? "−" : ""}US$${preciseMoneyFormat.format(absoluteDifference)}／月。`);
+      setText("allowance-note", t("allowanceNote", { credits: count(1900 * n) }));
+      setText("access-note", t("accessNote", { users: count(s) }));
+      setText("allowance-status", t(total <= 1900 * n ? "allowanceWithin" : "allowanceOver", { credits: count(total - 1900 * n) }));
+      const approximate = Number.isInteger(threshold) ? "" : t("approximate");
+      setText("threshold", t("threshold", { value: approximate + count(threshold) }));
+      setText("threshold-total", t("thresholdTotal", { credits: count(thresholdTotal) }));
+      setText("threshold-note", t(s === 0 ? "thresholdLicensed" : "thresholdOther", { value: approximate + count(threshold) }));
+      setText("usage-equivalent", t(mode === "average" ? "equivalentTotal" : "equivalentAverage", { credits: count(mode === "average" ? total : average) }));
+      setText("current-caption", t("currentCaption", { credits: count(average) }));
+      setText("substitution", t("substitution", { n: count(n), s: count(s), total: count(total), business: money(business), access: money(access), difference: `${difference < 0 ? "−" : ""}US$${preciseMoneyFormat.format(absoluteDifference)}` }));
       const rangeMax = Math.max(5000, Math.ceil(average / 1000) * 1000);
       usageRange.max = String(rangeMax);
       usageRange.value = String(average);
-      usageRange.setAttribute("aria-valuetext", `每人平均 ${count(average)} AI Credits／月`);
-      setText("range-max", count(rangeMax) + " Credits／人");
+      usageRange.setAttribute("aria-valuetext", t("rangeValue", { credits: count(average) }));
+      setText("range-max", t("rangeMax", { credits: count(rangeMax) }));
       document.querySelectorAll("[data-preset]").forEach((button) => {
         const preset = presets[button.dataset.preset];
         button.setAttribute("aria-pressed", String(n === preset.n && s === preset.s && Math.abs(average - preset.average) < 1e-8));
       });
       drawChart(model);
       announcementTimer = setTimeout(() => {
-        setText("live-result", `Business 每月 ${money(business)}，access 每月 ${money(access)}。${$("saving-label").textContent} ${$("saving").textContent}。`);
+        setText("live-result", t("liveResult", { business: money(business), access: money(access), label: $("saving-label").textContent, amount: $("saving").textContent }));
       }, 250);
     }
 
@@ -541,7 +675,6 @@
       const model = lastValid;
       mode = nextMode;
       usageInput.value = String(mode === "average" ? model.average : model.total);
-      setText("usage-label", mode === "average" ? "每人平均月用量" : "企業每月總用量");
       $("mode-average").setAttribute("aria-pressed", String(mode === "average"));
       $("mode-total").setAttribute("aria-pressed", String(mode === "total"));
       update();
@@ -553,7 +686,6 @@
       peopleInput.value = String(preset.n);
       standaloneInput.value = String(preset.s);
       usageInput.value = String(preset.average);
-      setText("usage-label", "每人平均月用量");
       $("mode-average").setAttribute("aria-pressed", "true");
       $("mode-total").setAttribute("aria-pressed", "false");
       update();
@@ -569,7 +701,8 @@
     $("mode-total").addEventListener("click", () => setMode("total"));
     $("reset").addEventListener("click", () => applyPreset("mixed"));
     document.querySelectorAll("[data-preset]").forEach((button) => button.addEventListener("click", () => applyPreset(button.dataset.preset)));
-    update();
+    document.querySelectorAll("[data-language]").forEach((button) => button.addEventListener("click", () => setLanguage(button.dataset.language)));
+    setLanguage("zh-TW");
     new ResizeObserver(() => {
       if (lastValid) drawChart(lastValid);
     }).observe($("chart-canvas"));
